@@ -3,17 +3,32 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
-    agenix.url = "github:ryantm/agenix";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs = inputs @ {
     nixpkgs,
-    agenix,
+    nixpkgs-unstable,
     ...
   }: {
-    nixosConfigurations.ravensiris = nixpkgs.lib.nixosSystem {
-      system = "armv7l-linux";
-      modules = [./configuration.nix];
+    colmena = {
+      meta = {
+        nixpkgs = import nixpkgs-unstable {
+          system = "x86_64-linux";
+        };
+      };
+
+      ravensiris = {
+        deployment.targetHost = "49.13.30.46";
+        deployment.buildOnTarget = true;
+        nixpkgs.system = "aarch64-linux";
+
+        imports = [
+          ./configuration.nix
+          ./postgres.nix
+          ./kotkowo-admin.nix
+        ];
+      };
     };
   };
 }
