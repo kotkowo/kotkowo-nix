@@ -19,14 +19,30 @@
       };
 
       ravensiris = {
+        nixpkgs.system = "aarch64-linux";
         deployment.targetHost = "49.13.30.46";
         deployment.buildOnTarget = true;
-        nixpkgs.system = "aarch64-linux";
+        deployment.keys."strapi.env.secret" = {
+          keyCommand = ["pass" "kotkowo/strapi.env"];
+        };
+        deployment.keys."kotkowo.env.secret" = {
+          keyCommand = ["pass" "kotkowo/kotkowo.env"];
+        };
+
+        virtualisation.oci-containers.backend = "podman";
+        networking.firewall.allowedTCPPorts = [80 443];
+        services.caddy = {
+          enable = true;
+          virtualHosts."ravensiris.xyz".extraConfig = ''
+            respond "Hello, world!"
+          '';
+        };
 
         imports = [
           ./configuration.nix
           ./postgres.nix
           ./kotkowo-admin.nix
+          ./kotkowo.nix
         ];
       };
     };
