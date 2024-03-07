@@ -28,6 +28,9 @@
         deployment.keys."kotkowo.env.secret" = {
           keyCommand = ["pass" "kotkowo/kotkowo.env"];
         };
+        deployment.keys."glitchtip.env.secret" = {
+          keyCommand = ["pass" "kotkowo/glitchtip.env"];
+        };
 
         virtualisation.oci-containers.backend = "podman";
         networking.firewall.allowedTCPPorts = [80 443];
@@ -43,6 +46,8 @@
           ./postgres.nix
           ./kotkowo-admin.nix
           ./kotkowo.nix
+          ./glitchtip.nix
+          ./redis.nix
         ];
       };
     };
