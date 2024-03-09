@@ -5,7 +5,6 @@
     ENABLE_USER_REGISTRATION = "FALSE";
     DATABASE_URL = "postgresql:///postgres?host=/var/run/postgresql&user=postgres";
     REDIS_URL = "redis://127.0.0.1:6379/1";
-    EMAIL_URL = "consolemail://";
     CELERY_WORKER_AUTOSCALE = "1,3";
     CELERY_WORKER_MAX_TASKS_PER_CHILD = "10000";
     PORT = "8000";
