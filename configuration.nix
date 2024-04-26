@@ -7,8 +7,11 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader.grub.enable = false;
-  boot.loader.generic-extlinux-compatible.enable = true;
+  # boot.loader.grub.enable = false;
+  # boot.loader.generic-extlinux-compatible.enable = true;
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "ravensiris"; # Define your hostname.
   systemd.network.enable = true;
