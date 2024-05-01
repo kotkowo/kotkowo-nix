@@ -30,7 +30,9 @@
   };
 
   users.users."root".openssh.authorizedKeys.keys = [
-    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvbcePds/kzNbdqV2h1dyb4FaSjdWW9ohi2xPjDGikWF75xub0CgX1Fe4EvFXQKG4w2kjapvCtq+nD6AasxxADecQ5kPtnppR3xGe3qs1cY9crj3/PhFeH/KOCDrnFdxWwvq41rGjdzcGJravh4pcsFNN2/lVOqWR1UV8jKdaUXK8m/lNjJYHHEHxzEaSg1upGkip1WsOvl0ZhzzN8XjQ1+fOlwMVLDyI0u41fHabbmeG7DlD7xh9A7n2ULmUQ1ZDnROgT4cdw6z/D8skTsePtcl9CH3nR8yESbs+qqJISnTlsMBe11iSxix8ls9Hfo6UORES+hs82tV0DU2WPd1D+FF9xnf9/UkzwTrJYktKJMNCDFVhTlO3XWLUiaTZ0Ye2N0Yuaa0jWpVF2oTVCi3yGJEFd3Nd78VR+nBZqv3sQthX/YOogmS75VothV6pxlGT3kgvg3qR4C9jthN7Eywhuu32ipTMA1dxm8MFmcRez9VkWzRpC6OnNMDgPki2oxcU= q@stein"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC4duy6jXTVgjst3f9zHNMKxWodvXc2aN1JV0uh/9Zyi"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9Al4LsSHmhaZ75PPycON6ifkumNoTWAWRMue+6hwMx"
+    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOFhn5qz3k6kIgTkMTN4k75Fss0THO9CHZFCyc9jIgd2N/s9Oyl1YdOvG850sJf/zVqYXmZ74HzMANqsAA5XTgw="
   ];
 
   environment.variables = {
