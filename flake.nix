@@ -48,6 +48,7 @@
           ./kotkowo.nix
           ./glitchtip.nix
           ./redis.nix
+          ./grafana.nix
         ];
       };
     };
