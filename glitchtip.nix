@@ -16,7 +16,7 @@ in {
 
   virtualisation.oci-containers.containers = {
     glitchtip = {
-      image = "glitchtip/glitchtip";
+      image = "glitchtip/glitchtip:v4.0.8";
       autoStart = true;
       environmentFiles = ["/run/keys/glitchtip.env.secret"];
       volumes = [
@@ -29,7 +29,7 @@ in {
     };
 
     glitchtip-worker = {
-      image = "glitchtip/glitchtip";
+      image = "glitchtip/glitchtip:v4.0.8";
       autoStart = true;
       entrypoint = "./bin/run-celery-with-beat.sh";
       environmentFiles = [];
