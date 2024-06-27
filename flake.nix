@@ -49,6 +49,7 @@
           ./glitchtip.nix
           ./redis.nix
           ./grafana.nix
+          ./prometheus.nix
         ];
       };
     };

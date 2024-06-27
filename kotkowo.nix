@@ -1,6 +1,14 @@
 {pkgs, ...}: {
   services.caddy.virtualHosts."kotkowo.ravensiris.xyz".extraConfig = ''
-    reverse_proxy :4000
+    @notblacklisted {
+      not {
+        path /metrics*
+      }
+    }
+
+    redir /metrics* /
+
+    reverse_proxy @notblacklisted :4000
   '';
   virtualisation.oci-containers.containers.kotkowo = {
     image = "ghcr.io/kotkowo/kotkowo:latest";
@@ -12,7 +20,7 @@
     wantedBy = ["timers.target"];
     timerConfig = {
       Unit = "kotkowo-update.service";
-      OnCalendar = "daily";
+      OnCalendar = "1h";
       Persistent = true;
     };
   };
