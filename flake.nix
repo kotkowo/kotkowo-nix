@@ -13,7 +13,7 @@
   }: {
     colmena = {
       meta = {
-        nixpkgs = import nixpkgs-unstable {
+        nixpkgs = import nixpkgs {
           system = "x86_64-linux";
         };
       };
