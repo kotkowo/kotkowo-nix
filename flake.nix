@@ -4,11 +4,15 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    homepage = {
+      url = "github:ravensiris/ravensiris.xyz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ {
+  outputs = {
     nixpkgs,
-    nixpkgs-unstable,
+    homepage,
     ...
   }: {
     colmena = {
@@ -32,22 +36,27 @@
           keyCommand = ["pass" "kotkowo/glitchtip.env"];
         };
 
-        virtualisation.oci-containers.backend = "podman";
-        networking.firewall.allowedTCPPorts = [80 443];
-        services.caddy = {
-          enable = true;
-          virtualHosts."ravensiris.xyz".extraConfig = ''
-            respond "Hello, world!"
-          '';
+        deployment.keys."homepage-secret-base-file" = {
+          keyCommand = ["pass" "homepage/secret-key-base"];
         };
 
+        # local connections do not require password
+        deployment.keys."homepage-db-url" = {
+          keyCommand = ["echo" "ecto://postgres@localhost/postgres"];
+        };
+
+        virtualisation.oci-containers.backend = "podman";
+        networking.firewall.allowedTCPPorts = [80 443];
+
         imports = [
+          homepage.outputs.packages.aarch64-linux.nixosModule
           ./configuration.nix
           ./postgres.nix
           ./kotkowo-admin.nix
           ./kotkowo.nix
           ./glitchtip.nix
           ./redis.nix
+          ./homepage.nix
         ];
       };
     };
